@@ -1,24 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const {
+  getPatient,
+  getPatients,
+  updatePatient,
+  createPatient,
+  deletePatient
+} = require("../controllers/patient");
 
-router.get("/", (req, res) => {
-  res.status(200).send("Hello from get");
-});
-
-router.get("/:id", (req, res) => {
-  res.status(200).send("Hello from get one patient");
-});
-
-router.post("/", (req, res) => {
-  res.status(200).send("Hello from create");
-});
-
-router.put("/:id", (req, res) => {
-  res.status(200).send("Hello from update");
-});
-
-router.delete("/:id", (req, res) => {
-  res.send("Trying to delete");
-});
+router
+  .route("/")
+  .get(getPatients)
+  .post(createPatient);
+router
+  .route("/:id")
+  .get(getPatient)
+  .put(updatePatient)
+  .delete(deletePatient);
 
 module.exports = router;
