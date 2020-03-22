@@ -4,16 +4,31 @@ const Patient = require("../models/Patient");
 // @route   GET /api/v1/patient
 // access    Public
 
-exports.getPatients = (req, res, next) => {
-  res.status(200).send("Hello from get");
+exports.getPatients = async (req, res, next) => {
+  try {
+    const patients = await Patient.find();
+    res
+      .status(200)
+      .json({ success: true, count: patients.length, data: patients });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
 };
 
 // @desc    Get single the patients
 // @route   GET /api/v1/patient/:id
 // access    Public
 
-exports.getPatient = (req, res, next) => {
-  res.status(200).send("Hello from get one patient");
+exports.getPatient = async (req, res, next) => {
+  try {
+    const single_patient = await Patient.findById(req.params.id);
+    if (single_patient === null) {
+      return res.status(400).json({ success: false });
+    }
+    res.status(200).json({ success: true, data: single_patient });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
 };
 
 // @desc    create single patients
@@ -29,14 +44,33 @@ exports.createPatient = async (req, res, next) => {
 // @route   PUT /api/v1/patient/:id
 // access   Private
 
-exports.updatePatient = (req, res, next) => {
-  res.status(200).send("Hello from update");
+exports.updatePatient = async (req, res, next) => {
+  try {
+    const patient = await Patient.findOneAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
+    if (patient) {
+      return res.status(200).json({ success: true, data: patient });
+    }
+  } catch (err) {
+    res.status(400).json({ success: false, msg: "Update Failed" });
+  }
 };
 
 // @desc    delete single patients
 // @route   DELETE /api/v1/patient/:id
 // access   Private
 
-exports.deletePatient = (req, res, next) => {
-  res.status(200).send("Hello from delete");
+exports.deletePatient = async (req, res, next) => {
+  try {
+    const patient = await Patient.findByIdAndDelete(req.params.id);
+    if (!patient) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(400).json({ success: true, data: {} });
+  } catch (err) {
+    res.status(400).json({ success: false, msg: "Update Failed" });
+  }
 };

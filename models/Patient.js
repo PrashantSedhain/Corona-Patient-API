@@ -5,6 +5,7 @@ const PatientSchema = new mongoose.Schema({
     type: String,
     required: [true, "You must enter your full name"],
     trim: true,
+    unique: true,
     maxlength: [50, "Name cannot be more than 50 characters"]
   },
   gender: {
@@ -72,7 +73,7 @@ const PatientSchema = new mongoose.Schema({
 module.exports = mongoose.model("Patient", PatientSchema);
 
 // {
-//   "name": "Prashant Sedhain",
+//   "name": "Adolfo Montero",
 //   "gender": "Male",
 //   "age": 23,
 //   "ethnicity": "Hindu",
@@ -83,7 +84,7 @@ module.exports = mongoose.model("Patient", PatientSchema);
 //   "hasRecovered": true,
 //   "numDaysQuarantined": 22,
 //   "nameOfHospitalVisited": "Teaching Hospital",
-//   "dateInfectionReported": Date.now,
+//   "dateInfectionReported": "6/7/2020",
 //   "isImmuneCompromised": false,
-//   "listOfRecentContacts": ['Suman', 'Rajesh', 'Meera']
+//   "listOfRecentContacts": ["Suman", "Rajesh", "Meera"]
 // }
