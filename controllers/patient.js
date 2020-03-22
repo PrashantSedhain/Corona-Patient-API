@@ -1,3 +1,5 @@
+const Patient = require("../models/Patient");
+
 // @desc    Get all the patients
 // @route   GET /api/v1/patient
 // access    Public
@@ -18,8 +20,9 @@ exports.getPatient = (req, res, next) => {
 // @route   POST /api/v1/patient/
 // access   Private
 
-exports.createPatient = (req, res, next) => {
-  res.status(200).send("Hello from create");
+exports.createPatient = async (req, res, next) => {
+  const patient = await Patient.create(req.body);
+  res.status(201).json({ success: "True", data: patient });
 };
 
 // @desc    update single patients
