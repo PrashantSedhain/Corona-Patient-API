@@ -1,15 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: "app-create",
+  templateUrl: "./create.component.html",
+  styleUrls: ["./create.component.css"]
 })
 export class CreateComponent implements OnInit {
+  states: Array<String> = [
+    "Alaska",
+    "Alabama",
+    "Arkansas",
+    "American Samoa",
+    "Arizona",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "District of Columbia",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Guam",
+    "Hawaii",
+    "Iowa",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Massachusetts",
+    "Maryland",
+    "Maine",
+    "Michigan",
+    "Minnesota",
+    "Missouri",
+    "Mississippi",
+    "Montana",
+    "North Carolina",
+    " North Dakota",
+    "Nebraska",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "Nevada",
+    "New York",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Puerto Rico",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Virginia",
+    "Virgin Islands",
+    "Vermont",
+    "Washington",
+    "Wisconsin",
+    "West Virginia",
+    "Wyoming"
+  ];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
