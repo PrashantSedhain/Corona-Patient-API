@@ -21,14 +21,13 @@ const PatientSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your race"]
   },
-  slug: String,
   state: {
     type: String,
     required: [true, "Please enter your state"],
     maxlength: [20, "Not a valid state"]
   },
   hasRecentlyTraveled: {
-    type: Boolean,
+    type: String,
     required: [true, "Please insert if you have recently travelled or not."]
   },
   quarantinedPlaceName: {
@@ -39,8 +38,8 @@ const PatientSchema = new mongoose.Schema({
     ]
   },
   hasRecovered: {
-    type: Boolean,
-    required: [true, "Please provide input if or not the patient recovered."]
+    type: String,
+    required: [false, "Please provide input if or not the patient recovered."]
   },
   numDaysQuarantined: {
     type: Number,
@@ -55,14 +54,14 @@ const PatientSchema = new mongoose.Schema({
     required: [true, "Please enter the date when the infection was reported."]
   },
   isImmuneCompromised: {
-    type: Boolean,
+    type: String,
     required: [
       true,
       "Please enter if the patient was immune compromised or not."
     ]
   },
   listOfRecentContacts: {
-    type: Array,
+    type: String,
     required: [
       true,
       "Please provide name of person the patient recently had close contact with."

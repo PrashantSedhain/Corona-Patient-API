@@ -2,13 +2,15 @@ const express = require("express");
 const dotenv = require("dotenv");
 const patient = require("./routes/patient");
 const connectDB = require("./config/db");
+const cors = require("cors");
 //load env vars
 dotenv.config({ path: "./config/config.env" });
 
+const app = express();
+app.use(cors());
+
 //Connect to database
 connectDB();
-
-const app = express();
 
 //Body parser
 app.use(express.json());
