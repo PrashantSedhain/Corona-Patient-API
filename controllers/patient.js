@@ -6,10 +6,9 @@ const Patient = require("../models/Patient");
 
 exports.getPatients = async (req, res, next) => {
   try {
-    const patients = await Patient.find();
-    res
-      .status(200)
-      .json({ success: true, count: patients.length, data: patients });
+    await Patient.find().then(patientData => {
+      res.status(200).json({ message: true, data: patientData });
+    });
   } catch (err) {
     res.status(400).json({ success: false });
   }
@@ -25,7 +24,7 @@ exports.getPatient = async (req, res, next) => {
     if (single_patient === null) {
       return res.status(400).json({ success: false });
     }
-    res.status(200).json({ success: true, data: single_patient });
+    res.status(200).json({ data: single_patient });
   } catch (err) {
     res.status(400).json({ success: false });
   }

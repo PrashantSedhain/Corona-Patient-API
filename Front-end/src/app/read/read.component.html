@@ -1,1 +1,36 @@
-<p>read works!</p>
+<button (click)="getData()">Get Data</button>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Full Name</th>
+        <th scope="col">Patient's Gender</th>
+        <th scope="col">Patient's Ethnicity</th>
+        <th scope="col">Patient's State</th>
+        <th scope="col">Recently Travelled</th>
+        <th scope="col">Quarantined Place</th>
+        <th scope="col">Days Quarantined</th>
+        <th scope="col">Hospital Visited</th>
+        <th scope="col">Infection Reported</th>
+        <th scope="col">Immune Compromised</th>
+        <th scope="col">Recent Contacts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listOfPatients">
+        <th scope="row">{{ item.name }}</th>
+        <td>{{ item.gender }}</td>
+        <td>{{ item.ethnicity }}</td>
+        <td>{{ item.state }}</td>
+
+        <td>{{ item.hasRecentlyTraveled }}</td>
+        <td>{{ item.quarantinedPlaceName }}</td>
+        <td>{{ item.numDaysQuarantined }}</td>
+        <td>{{ item.nameOfHospitalVisited }}</td>
+        <td>{{ item.dateInfectionReported }}</td>
+        <td>{{ item.isImmuneCompromised }}</td>
+        <td>{{ item.listOfRecentContacts }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

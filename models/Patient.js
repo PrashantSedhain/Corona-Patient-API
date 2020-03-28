@@ -3,68 +3,67 @@ const mongoose = require("mongoose");
 const PatientSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "You must enter your full name"],
+    required: [true, "You must enter your full name\n"],
     trim: true,
     unique: true,
-    maxlength: [50, "Name cannot be more than 50 characters"]
+    maxlength: [50, "Name cannot be more than 50 characters\n"]
   },
   gender: {
     type: String,
-    required: [true, "Please enter your gender"]
+    required: [true, "Please enter your gender\n"]
   },
   age: {
     type: Number,
     max: 100,
-    required: [true, "Please enter your age"]
+    required: [true, "Please enter your age\n"]
   },
   ethnicity: {
     type: String,
-    required: [true, "Please enter your race"]
+    required: [true, "Please enter your race\n"]
   },
   state: {
     type: String,
-    required: [true, "Please enter your state"],
+    required: [true, "Please enter your state\n"],
     maxlength: [20, "Not a valid state"]
   },
   hasRecentlyTraveled: {
     type: String,
-    required: [true, "Please insert if you have recently travelled or not."]
+    required: [true, "Please insert if you have recently travelled or not.\n"]
   },
   quarantinedPlaceName: {
     type: String,
     required: [
       true,
-      "Please enter the name of place where the patient was quarantined."
+      "Please enter the name of place where the patient was quarantined.\n"
     ]
-  },
-  hasRecovered: {
-    type: String,
-    required: [false, "Please provide input if or not the patient recovered."]
   },
   numDaysQuarantined: {
     type: Number,
-    required: [true, "Please enter number of days the patient was quarantined."]
+    required: [
+      true,
+      "Please enter number of days the patient was quarantined.\n"
+    ]
   },
   nameOfHospitalVisited: {
     type: String,
-    required: [true, "Please enter the hospital name if you visited any."]
+    required: [true, "Please enter the hospital name if you visited any.\n"]
   },
   dateInfectionReported: {
     type: String,
-    required: [true, "Please enter the date when the infection was reported."]
+    required: [true, "Please enter the date when the infection was reported.\n"]
   },
   isImmuneCompromised: {
     type: String,
     required: [
       true,
-      "Please enter if the patient was immune compromised or not."
+      "Please enter if the patient was immune compromised or not.\n"
     ]
   },
   listOfRecentContacts: {
     type: String,
     required: [
       true,
-      "Please provide name of person the patient recently had close contact with."
+      "Please provide name of person the patient recently had close contact with.\n"
     ]
   }
 });

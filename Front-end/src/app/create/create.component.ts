@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Message } from "@angular/compiler/src/i18n/i18n_ast";
+import { PatientService } from "../patient.service";
 
 @Component({
   selector: "app-create",
@@ -16,7 +18,6 @@ export class CreateComponent implements OnInit {
     state: ["", Validators.required],
     hasRecentlyTraveled: ["", Validators.required],
     quarantinedPlaceName: ["", Validators.required],
-    hasRecovered: [""],
     numDaysQuarantined: [0, Validators.required],
     nameOfHospitalVisited: ["", Validators.required],
     dateInfectionReported: ["", Validators.required],
@@ -80,22 +81,17 @@ export class CreateComponent implements OnInit {
     "West Virginia",
     "Wyoming"
   ];
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private patientService: PatientService
+  ) {}
 
   ngOnInit() {}
 
   onSubmit() {
     if (this.patientForm.valid) {
-      //Convert to JSON object for passing to the database.
-      var patient_JSON = JSON.stringify(this.patientForm.value);
-      console.log(patient_JSON);
-
-      //Put it in the server here
-      this.http
-        .post("http://localhost:5000/api/v1/patient", patient_JSON)
-        .subscribe(response => {
-          console.log("repsonse ", response);
-        });
+      this.patientService.cretePatient(this.patientForm);
     } else {
       console.warn("Form is invalid");
     }
