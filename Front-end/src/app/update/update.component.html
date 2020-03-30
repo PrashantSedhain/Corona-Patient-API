@@ -1,1 +1,141 @@
-<p>update works!</p>
+<mat-progress-bar
+*ngIf = "loading"
+[mode]="'indeterminate'">
+</mat-progress-bar>
+<div class="container">
+
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+      <h3 class="headerText">
+        Update the patient using the form below.
+      </h3>
+  
+      <h6>Full name of the patient:</h6>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Full Name</mat-label>
+        <input formControlName="name" matInput placeholder="Ex: John Smith" />
+      </mat-form-field>
+  
+      <h6>Gender:</h6>
+      <mat-radio-group formControlName="gender" aria-label="Select an option">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button class="radio" value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+  
+      <h6 class="title">Age:</h6>
+      <mat-form-field appearance="outline">
+        <input
+        value=""
+          formControlName="age"
+          matInput
+          type="number"
+          placeholder="Ex. 23"
+          min="1"
+        />
+        <!-- <span matSuffix>years</span> -->
+      </mat-form-field>
+  
+      <h6>Ethnicity:</h6>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter ethnicity</mat-label>
+        <input formControlName="ethnicity" value = "test"  matInput placeholder="Ex: Hindu" />
+      </mat-form-field>
+  
+      <h6>Select the State:</h6>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="state">
+          <mat-option *ngFor="let state of states" [value]="state">
+            {{ state }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <h6>Did the patient recently travelled somewhere?</h6>
+      <mat-radio-group
+        formControlName="hasRecentlyTraveled"
+        aria-label="Select an option"
+      >
+        <mat-radio-button value="Yes">Yes</mat-radio-button>
+        <mat-radio-button class="radio" value="No">No</mat-radio-button>
+      </mat-radio-group>
+  
+      <h6 class="title">
+        Please provide the address where the patient is quarantined.
+      </h6>
+      <mat-form-field appearance="outline">
+        <input
+          formControlName="quarantinedPlaceName"
+          matInput
+          placeholder="Ex. 15801 Chase Hill Blvd"
+        />
+      </mat-form-field>
+      <h6>
+        How many days has the patient been quarantined so far?
+      </h6>
+      <mat-form-field appearance="outline">
+        <input
+          formControlName="numDaysQuarantined"
+          matInput
+          type="number"
+          placeholder="Ex. 23"
+          min="0"
+        />
+        <!-- <span matSuffix>years</span> -->
+      </mat-form-field>
+  
+      <h6>
+        Provide the name of the hospital patient visited:
+      </h6>
+      <mat-form-field appearance="outline">
+        <input
+          formControlName="nameOfHospitalVisited"
+          matInput
+          placeholder="Ex. 15801 Chase Hill Blvd"
+        />
+      </mat-form-field>
+  
+      <h6>
+        When was the infection confirmed?
+      </h6>
+      <mat-form-field appearance="outline">
+        <input
+          formControlName="dateInfectionReported"
+          matInput
+          placeholder="Ex. 12/12/2020"
+        />
+      </mat-form-field>
+  
+      <h6>Is the patient immune compromised?</h6>
+      <mat-radio-group
+        formControlName="isImmuneCompromised"
+        aria-label="Select an option"
+      >
+        <mat-radio-button value="Yes">Yes</mat-radio-button>
+        <mat-radio-button class="radio" value="No">No</mat-radio-button>
+      </mat-radio-group>
+  
+      <h6 class="title">
+        Please provide name of recent contacts separated with comma:
+      </h6>
+      <mat-form-field appearance="outline">
+        <input
+          formControlName="listOfRecentContacts"
+          matInput
+          placeholder="Raju, Ramesh, Hari"
+        />
+      </mat-form-field>
+      <br />
+      <button (click)="onSubmit()" type="button" class="btn btn-dark">
+        Update
+      </button>
+      <br />
+      <br />
+      <br />
+      <br />
+    </form>
+
+
+        
+
+ 
+  </div>
+  

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
+
 interface Patient {
   _id: Number;
   name: String;
@@ -24,6 +25,7 @@ export class PatientService {
   private patientUpdated = new Subject<Patient[]>();
   constructor(private http: HttpClient) {}
 
+  singlePatient: Patient;
   //Array to store all the patient in the database.
   listOfPatients: Patient[];
   message: boolean;
@@ -33,9 +35,10 @@ export class PatientService {
   headers = new HttpHeaders({
     "Content-Type": "application/json"
   });
+  
 
   //Function to retrieve all the patients from the database.
-  getPatients(): Patient[] {
+  getPatients() {
     this.http
       .get<{
         message: boolean;
@@ -48,10 +51,6 @@ export class PatientService {
           alert("Failed to retrieve patients.");
         }
       });
-
-    if (this.message == true) {
-      return this.listOfPatients;
-    }
   }
 
   cretePatient(patientForm: any) {
@@ -66,5 +65,43 @@ export class PatientService {
           alert("Patient is successfully added to the database.");
         }
       });
+  }
+
+  updatePatient (patientForm:any, _id: Number) {
+    var patient_JSON = JSON.stringify(patientForm.value);
+     this.http.put(`${this.uri}/${_id}`, patient_JSON, {headers: this.headers}).subscribe(response => {
+      if(response)
+      {
+        console.log(response);
+      }
+    });
+
+  }
+
+  getInformationForUpdating(id: Number)
+  {
+    this.http.get<{
+      message: boolean;
+      data: Patient;
+    }>(`${this.uri}/${id}`)
+    .subscribe(response => {
+      this.singlePatient = response.data;
+      this.message = response.message;
+      if (this.message == false) {
+        alert("Failed to retrieve patients.");
+      }
+      else {
+        console.log(this.singlePatient);
+        return this.singlePatient;
+      }
+    });
+  }
+
+  deletePatient(id: Number) {
+    this.http.delete<{message: boolean}>(`${this.uri}/${id}`).subscribe(response => {
+      if(response.message == true) {
+        console.log("Deleted successfully.")
+      }
+    });
   }
 }
