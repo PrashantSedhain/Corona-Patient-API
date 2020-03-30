@@ -62,7 +62,7 @@ export class PatientService {
       .post(this.uri, patient_JSON, { headers: this.headers })
       .subscribe(response => {
         if (response) {
-          alert("Patient is successfully added to the database.");
+          console.log("Patient added");
         }
       });
   }

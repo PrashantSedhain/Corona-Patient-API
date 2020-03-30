@@ -52,7 +52,7 @@ export class ReadComponent implements OnInit {
   {
     this.patientService.deletePatient(id);
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate(['/readPage']));
+      this.router.navigate(['/readPage']));
     this.openSnackBar("Deleted Successfully", "Done");
   }
 }
