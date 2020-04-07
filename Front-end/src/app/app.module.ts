@@ -29,7 +29,8 @@ import {
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule,
+  MatProgressBarModule,
 } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -74,7 +75,8 @@ import { PatientresolverService } from "./patientresolver.service";
     MatRadioModule,
     CommonModule,
     MatProgressSpinnerModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatProgressBarModule
     // ToastrModule.forRoot({
     //   timeOut: 3000,
     //   positionClass: "toast-top-center",

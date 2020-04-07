@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { PatientService } from "../patient.service";
+import { MatSnackBar } from "@angular/material";
+import { Router } from "@angular/router";
+
 interface Patient {
   _id: Number;
   name: String;
@@ -19,15 +22,41 @@ interface Patient {
 @Component({
   selector: "app-read",
   templateUrl: "./read.component.html",
-  styleUrls: ["./read.component.css"]
+  styleUrls: ["./read.component.css"],
 })
 export class ReadComponent implements OnInit {
   listOfPatients: Patient[];
+  dataLoaded: boolean = false;
 
-  constructor(private _router: Router, private _route: ActivatedRoute) {}
+  constructor(
+    private patientService: PatientService,
+    private _snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
-  // getData() {}
   ngOnInit() {
-    this.listOfPatients = this._route.snapshot.data['patientList'];
+    this.patientService.getPatients();
+
+    setTimeout(() => {
+      this.listOfPatients = this.patientService.listOfPatients;
+      console.log(this.listOfPatients);
+      this.dataLoaded = true;
+    }, 1500);
+  }
+
+  editPatient(id: Number) {
+    this.patientService.getInformationForUpdating(id);
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
+  }
+  deletePatient(id: Number) {
+    this.patientService.deletePatient(id);
+    this.router
+      .navigateByUrl("/", { skipLocationChange: true })
+      .then(() => this.router.navigate(["/readPage"]));
+    this.openSnackBar("Deleted Successfully", "Done");
   }
 }

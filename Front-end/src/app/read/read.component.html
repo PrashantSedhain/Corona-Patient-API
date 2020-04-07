@@ -1,22 +1,28 @@
-<button (click)="getData()">Get Data</button>
-<div class="table-responsive">
+<mat-progress-bar
+*ngIf = "!dataLoaded"
+[mode]="'indeterminate'">
+</mat-progress-bar>
+
+
+<div *ngIf="dataLoaded" class="table-responsive">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Full Name</th>
-        <th scope="col">Patient's Gender</th>
-        <th scope="col">Patient's Ethnicity</th>
-        <th scope="col">Patient's State</th>
-        <th scope="col">Recently Travelled</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Ethnicity</th>
+        <th scope="col">State</th>
+        <th scope="col">Recent Travel</th>
         <th scope="col">Quarantined Place</th>
         <th scope="col">Days Quarantined</th>
         <th scope="col">Hospital Visited</th>
         <th scope="col">Infection Reported</th>
-        <th scope="col">Immune Compromised</th>
+        <th scope="col">Weak Immune</th>
         <th scope="col">Recent Contacts</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="dataLoaded">
       <tr *ngFor="let item of listOfPatients">
         <th scope="row">{{ item.name }}</th>
         <td>{{ item.gender }}</td>
@@ -30,6 +36,10 @@
         <td>{{ item.dateInfectionReported }}</td>
         <td>{{ item.isImmuneCompromised }}</td>
         <td>{{ item.listOfRecentContacts }}</td>
+        <div>
+          <button routerLink = "/updatePage" (click) = "editPatient(item._id)" type="button" id="item._id" class="btn btn-link">Edit</button>
+          <button (click) = "deletePatient(item._id)" type="button" id="item._id" class="btn btn-link">Delete</button>
+        </div>
       </tr>
     </tbody>
   </table>

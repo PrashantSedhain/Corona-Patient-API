@@ -45,7 +45,7 @@ exports.createPatient = async (req, res, next) => {
 
 exports.updatePatient = async (req, res, next) => {
   try {
-    const patient = await Patient.findOneAndUpdate(req.params.id, req.body, {
+    const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
     });
@@ -64,12 +64,13 @@ exports.updatePatient = async (req, res, next) => {
 exports.deletePatient = async (req, res, next) => {
   try {
     const patient = await Patient.findByIdAndDelete(req.params.id);
+
     if (!patient) {
       return res.status(400).json({ success: false });
     }
 
-    res.status(400).json({ success: true, data: {} });
+    res.status(200).json({ success: true });
   } catch (err) {
-    res.status(400).json({ success: false, msg: "Update Failed" });
+    res.status(400).json({ success: false, msg: "Delete Failed" });
   }
 };

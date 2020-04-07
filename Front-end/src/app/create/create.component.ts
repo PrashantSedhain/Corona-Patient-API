@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Message } from "@angular/compiler/src/i18n/i18n_ast";
 import { PatientService } from "../patient.service";
-
+import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: "app-create",
   templateUrl: "./create.component.html",
@@ -84,14 +85,22 @@ export class CreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
+  }
   ngOnInit() {}
 
   onSubmit() {
     if (this.patientForm.valid) {
       this.patientService.cretePatient(this.patientForm);
+      this.router.navigate(['/readPage']);
+      this.openSnackBar("Patient added successfully.", "Done");
     } else {
       console.warn("Form is invalid");
     }
