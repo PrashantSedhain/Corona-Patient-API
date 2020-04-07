@@ -35,6 +35,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { LayoutModule } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
+import { PatientresolverService } from "./patientresolver.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +81,7 @@ import { CommonModule } from "@angular/common";
     //   preventDuplicates: true
     // })
   ],
-  providers: [],
+  providers: [PatientresolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

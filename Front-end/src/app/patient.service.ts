@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
+import { of } from "rxjs";
+
 interface Patient {
   _id: Number;
   name: String;
@@ -35,7 +37,7 @@ export class PatientService {
   });
 
   //Function to retrieve all the patients from the database.
-  getPatients(): Patient[] {
+  getPatients(): Observable<Patient[]> {
     this.http
       .get<{
         message: boolean;
@@ -50,7 +52,7 @@ export class PatientService {
       });
 
     if (this.message == true) {
-      return this.listOfPatients;
+      return of(this.listOfPatients);
     }
   }
 

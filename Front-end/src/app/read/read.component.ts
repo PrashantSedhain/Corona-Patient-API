@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { PatientService } from "../patient.service";
+import { Router, ActivatedRoute } from "@angular/router";
 interface Patient {
   _id: Number;
   name: String;
@@ -24,10 +24,10 @@ interface Patient {
 export class ReadComponent implements OnInit {
   listOfPatients: Patient[];
 
-  constructor(private patientService: PatientService) {}
+  constructor(private _router: Router, private _route: ActivatedRoute) {}
 
-  getData() {
-    this.listOfPatients = this.patientService.getPatients();
+  // getData() {}
+  ngOnInit() {
+    this.listOfPatients = this._route.snapshot.data['patientList'];
   }
-  ngOnInit() {}
 }
