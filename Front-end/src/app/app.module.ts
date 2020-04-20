@@ -36,14 +36,13 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { LayoutModule } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
-import { PatientresolverService } from "./patientresolver.service";
 @NgModule({
   declarations: [
     AppComponent,
     CreateComponent,
     ReadComponent,
     UpdateComponent,
-    DeleteComponent
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,14 +75,13 @@ import { PatientresolverService } from "./patientresolver.service";
     CommonModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
     // ToastrModule.forRoot({
     //   timeOut: 3000,
     //   positionClass: "toast-top-center",
     //   preventDuplicates: true
     // })
   ],
-  providers: [PatientresolverService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
