@@ -36,6 +36,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { LayoutModule } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
+import { LandingPageComponent } from './landing-page/landing-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { CommonModule } from "@angular/common";
     ReadComponent,
     UpdateComponent,
     DeleteComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
